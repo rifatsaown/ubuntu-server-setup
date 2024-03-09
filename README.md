@@ -8,7 +8,7 @@ sudo apt upgrade
 
 ## 2. Install Essential Tools
 ```bash
-sudo apt install -y git curl wget nano
+sudo apt install -y git curl wget nano unzip # Install Essential Tools
 ```
 
 ## 3. Install Node.js
@@ -26,7 +26,7 @@ nvm install 14.17.6 # Install Specific Node.js
 npm install -g yarn
 ```
 
-## 5. Install Docker
+## 5. Install Docker Details in [Docker-Setup.md](Docker-Setup.md)
 ```bash
 sudo apt install -y docker.io
 sudo systemctl start docker
