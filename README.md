@@ -39,7 +39,7 @@ sudo usermod -aG docker $USER # Add User to Docker Group (Reboot Required)
 sudo apt install -y docker-compose
 ```
 
-## 7. Install Nginx
+## 7. Install Nginx Details in [Nginx-Setup.md](Nginx-Setup.md)
 ```bash
 sudo apt install -y nginx # Install Nginx
 sudo systemctl start nginx # Start Nginx
