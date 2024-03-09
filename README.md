@@ -46,14 +46,7 @@ sudo systemctl start nginx # Start Nginx
 sudo systemctl enable nginx # Enable Nginx to Start on Boot
 ```
 
-## 8. Install MongoDB
-```bash
-sudo apt install -y mongodb
-sudo systemctl start mongodb
-sudo systemctl enable mongodb
-```
-
-## 9. Install Python
+## 8. Install Python
 ```bash
 sudo apt install -y python3
 ```
