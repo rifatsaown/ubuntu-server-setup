@@ -1,4 +1,4 @@
-# Deploy Node.js Application on Ubuntu Server Using Nginx and PM2(Production Process Manager for Node.js)
+# Deploy Node.js Application on Ubuntu Server Using Nginx
 ## 1. Install Node.js
 ```bash
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.2/install.sh | bash # Install NVM (Node Version Manager)
@@ -12,7 +12,7 @@ nvm install 14.17.6 # Install Specific Node.js
 ```bash
 npm install -g yarn
 ```
-## 3. Install PM2
+## 3. Install PM2(Production Process Manager for Node.js)
 ```bash
 npm install -g pm2
 ```
@@ -54,6 +54,7 @@ server {
 ```
 ```bash
 sudo systemctl restart nginx # Restart Nginx
+sudo systemctl status nginx # Check Nginx Status
 ```
 ## 8. Setup Firewall
 ```bash
@@ -62,7 +63,21 @@ sudo ufw allow 'OpenSSH' # Allow OpenSSH
 sudo ufw enable # Enable Firewall
 sudo ufw status # Check Firewall Status
 ```
-## 9. Setup Domain
+
+## 9. PM2 Commands
+```bash
+pm2 monit # Monitor Node.js Application
+
+pm2 stop [app_name] # Stop Node.js Application
+
+pm2 restart [app_name] # Restart Node.js Application
+
+pm2 kill # Kill PM2
+
+pm2 delete [app_name] # Delete Node.js Application
+```
+
+## 10. Setup Domain
 ```bash
 sudo nano /etc/hosts # Open Hosts File
 ```
@@ -84,10 +99,7 @@ sudo certbot certificates # Check SSL Certificates
 sudo certbot delete --cert-name [domain_name] # Delete SSL Certificate
 ```
 
-## 11. Setup Monitoring
-```bash
-pm2 monit # Monitor Node.js Application
-```
+
 ## 12. Setup Logrotate
 ```bash
 #Logrotate is a utility designed for administrators who manage servers producing a high volume of log files to help them save some disk space as well as to avoid a potential risk of unavailability of services. It allows automatic rotation, compression, removal, and mailing of log files. Each log file may be handled daily, weekly, monthly, or when it grows too large.
