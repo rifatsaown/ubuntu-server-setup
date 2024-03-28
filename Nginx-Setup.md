@@ -39,7 +39,12 @@ sudo systemctl reload nginx # Reload Nginx
 
 ## 5. Open Firewall for Nginx
 ```bash
-sudo ufw allow 'Nginx HTTP' # Open Firewall for Nginx HTTP Port 80 
+sudo ufw allow 'Nginx HTTP' # Open Firewall for Nginx HTTP Port 80
+sudo ufw enable
+sudo ufw status
+sudo ufw allow ssh (Port 22)
+sudo ufw allow http (Port 80)
+sudo ufw allow https (Port 443)
 ```
 
 ## 6. Check Nginx Status
