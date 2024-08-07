@@ -2,9 +2,30 @@
 
 ## 1. Install Docker
 ```bash
-sudo apt install -y docker.io
-sudo systemctl start docker
-sudo systemctl enable docker
+# Update package lists
+sudo apt-get update
+
+# Remove existing Docker packages
+sudo apt-get remove docker docker-engine docker.io containerd runc -y
+
+# Install required packages for Docker installation
+sudo apt-get install apt-transport-https ca-certificates curl software-properties-common -y
+
+# Add Docker's official GPG key
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+
+# Add Docker repository
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
+
+# Update package information with the new Docker repository
+sudo apt-get update
+
+# Install Docker CE (Community Edition)
+sudo apt-get install docker-ce -y
+
+# Check the status of Docker service
+sudo systemctl status docker
+
 sudo usermod -aG docker $USER # Add User to Docker Group (Reboot Required) 
 ```
 
