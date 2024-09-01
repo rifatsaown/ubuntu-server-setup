@@ -138,3 +138,51 @@ sudo certbot renew # Renew SSL Certificate
 ```bash
 sudo certbot renew --dry-run # Test SSL Certificate Renewal
 ```
+
+----------------------------------------------------
+# Nginx Multiple APP in multiple Sub Domain
+```bash
+sudo nano /etc/nginx/sites-available/[DOMAIN_NAME]
+```
+Add the following configuration:
+```nginx
+server {
+    listen 80;
+    server_name [Domain_NAME];
+
+    location / {
+        proxy_pass http://127.0.0.1:3000;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_cache_bypass $http_upgrade;
+    }
+}
+
+server {
+    listen 80;
+    server_name [SUB_DOMAIN];
+
+    location / {
+        proxy_pass http://127.0.0.1:5000;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_cache_bypass $http_upgrade;
+    }
+}
+```
+Enable the Sites
+```bash
+sudo ln -s /etc/nginx/sites-available/[DOMAIN_NAME] /etc/nginx/sites-enabled/
+```
+Test NGINX Config
+```bash
+sudo nginx -t
+```
+restart nginx server
+```bash
+sudo systemctl restart nginx
+```
