@@ -26,7 +26,20 @@ nvm install 14.17.6 # Install Specific Node.js
 npm install -g yarn
 ```
 
-## 5. Install Docker Details in [Docker-Setup.md](Docker-Setup.md)
+## 5. Install Zsh
+```bash
+sudo apt install -y zsh
+chsh -s $(which zsh) # Change Shell to Zsh
+# Logout and Login to Apply Changes
+```
+
+## 6. Install Oh My Zsh
+```bash
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+```
+
+
+## 7. Install Docker Details in [Docker-Setup.md](Docker-Setup.md)
 ```bash
 sudo apt install -y docker.io
 sudo systemctl start docker
@@ -34,19 +47,19 @@ sudo systemctl enable docker
 sudo usermod -aG docker $USER # Add User to Docker Group (Reboot Required) 
 ```
 
-## 6. Install Docker Compose
+## 8. Install Docker Compose
 ```bash
 sudo apt install -y docker-compose
 ```
 
-## 7. Install Nginx Details in [Nginx-Setup.md](Nginx-Setup.md)
+## 9. Install Nginx Details in [Nginx-Setup.md](Nginx-Setup.md)
 ```bash
 sudo apt install -y nginx # Install Nginx
 sudo systemctl start nginx # Start Nginx
 sudo systemctl enable nginx # Enable Nginx to Start on Boot
 ```
 
-## 8. Install Python
+## 10. Install Python
 ```bash
 sudo apt install -y python3
 ```
