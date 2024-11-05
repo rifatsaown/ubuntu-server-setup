@@ -26,6 +26,8 @@ nvm install 14.17.6 # Install Specific Node.js
 npm install -g yarn
 ```
 
+# Install Zsh and Oh My Zsh
+----------------------------------------------------------------------------------------
 ## 5. Install Zsh
 ```bash
 sudo apt install -y zsh
@@ -38,8 +40,18 @@ chsh -s $(which zsh) # Change Shell to Zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 ```
 
+## 7. Install Autocomplete Plugin
+```bash
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+```
 
-## 7. Install Docker Details in [Docker-Setup.md](Docker-Setup.md)
+## 8. Install Syntax Highlighting Plugin
+```bash
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+```
+----------------------------------------------------------------------------------------
+# Install Docker
+## 9. Install Docker Details in [Docker-Setup.md](Docker-Setup.md)
 ```bash
 sudo apt install -y docker.io
 sudo systemctl start docker
