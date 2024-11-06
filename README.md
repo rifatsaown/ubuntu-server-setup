@@ -49,6 +49,20 @@ git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-m
 ```bash
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 ```
+
+## 9. Update Zsh Config
+```bash
+nano ~/.zshrc
+
+# Add the following to the end of the file
+plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
+```
+
+## 10. Apply Changes
+```bash
+source ~/.zshrc
+```
+
 ----------------------------------------------------------------------------------------
 # Install Docker
 ## 9. Install Docker Details in [Docker-Setup.md](Docker-Setup.md)
