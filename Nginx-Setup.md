@@ -1,6 +1,7 @@
 # Setup Nginx Server on Linux(Ubuntu) for First Time
 
 ## 1. Install Nginx
+
 ```bash
 sudo apt install -y nginx # Install Nginx
 sudo systemctl start nginx # Start Nginx
@@ -8,9 +9,11 @@ sudo systemctl enable nginx # Enable Nginx to Start on Boot
 ```
 
 ## 2. Configure Nginx
+
 ```bash
 sudo nano /etc/nginx/sites-available/default # Open Nginx Configuration File
 ```
+
 ```nginx
 server {
     listen 80 default_server; # Listen on Port 80
@@ -19,25 +22,28 @@ server {
     root /var/www/html; # Root Directory
     index index.html index.htm index.nginx-debian.html; # Index Files
 
-    server_name _; # Server Name 
+    server_name _; # Server Name
 
     location / {
         try_files $uri $uri/ =404; # Redirect to 404 Page
-    } # Location Block for Root Directory 
+    } # Location Block for Root Directory
 }
 ```
 
 ## 3. Test Nginx Configuration
+
 ```bash
 sudo nginx -t # Test Nginx Configuration
 ```
 
 ## 4. Reload Nginx
+
 ```bash
 sudo systemctl reload nginx # Reload Nginx
 ```
 
 ## 5. Open Firewall for Nginx
+
 ```bash
 sudo ufw allow 'Nginx HTTP' # Open Firewall for Nginx HTTP Port 80
 sudo ufw enable
@@ -48,37 +54,44 @@ sudo ufw allow https (Port 443)
 ```
 
 ## 6. Check Nginx Status
+
 ```bash
 sudo systemctl status nginx # Check Nginx Status
 ```
 
 ## 7. Access Nginx from Browser
+
 ```bash
 # Open Browser and Enter Server IP Address
 ```
 
 ## 8. Nginx Configuration File
+
 ```bash
 sudo nano /etc/nginx/nginx.conf # Open Nginx Configuration File
 ```
 
 ## 9. Nginx Log Files
+
 ```bash
 sudo nano /var/log/nginx/access.log # Open Nginx Access Log File
 sudo nano /var/log/nginx/error.log # Open Nginx Error Log File
 ```
 
-## 10. Nginx Server Block Configuration 
+## 10. Nginx Server Block Configuration
+
 ```bash
-sudo nano /etc/nginx/sites-available/example.com # Create Nginx Server Block 
+sudo nano /etc/nginx/sites-available/example.com # Create Nginx Server Block
 sudo ln -s /etc/nginx/sites-available/example.com /etc/nginx/sites-enabled/ # Enable Nginx Server Block
-sudo systemctl reload nginx # Reload Nginx 
+sudo systemctl reload nginx # Reload Nginx
 ```
 
 ## 11. Nginx Reverse Proxy for JavaScript Applications
+
 ```bash
 sudo nano /etc/nginx/sites-available/example.com
 ```
+
 ```nginx
 server {
     listen 80;
@@ -88,7 +101,7 @@ server {
     location / {
         root /var/www/html/my-app/build;  # Path to your built frontend files
         try_files $uri $uri/ /index.html; # Handle client-side routing
-        
+
         # Cache static assets
         location /static {
             expires 1y;
@@ -104,7 +117,7 @@ server {
         proxy_set_header Connection 'upgrade';
         proxy_set_header Host $host;
         proxy_cache_bypass $http_upgrade;
-        
+
         # Add CORS headers
         add_header 'Access-Control-Allow-Origin' '*';
         add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS, PUT, DELETE';
@@ -122,6 +135,7 @@ server {
 ```
 
 ## Node.js Application Deployment Best Practices
+
 ```bash
 # Install PM2 for process management
 sudo npm install -g pm2
@@ -133,6 +147,7 @@ pm2 save    # Save current process list
 ```
 
 ## Multiple JavaScript Applications Setup
+
 ```nginx
 # For multiple Node.js applications or microservices
 server {
@@ -158,7 +173,7 @@ server {
     location / {
         root /var/www/html/frontend/build;
         try_files $uri $uri/ /index.html;
-        
+
         # Gzip compression for better performance
         gzip on;
         gzip_types text/plain text/css application/json application/javascript text/xml application/xml application/xml+rss text/javascript;
@@ -178,6 +193,7 @@ server {
 ```
 
 ## Load Balancing Node.js Applications
+
 ```nginx
 # Upstream configuration for load balancing
 upstream node_backend {
@@ -203,6 +219,7 @@ server {
 ```
 
 ## Security Headers for JavaScript Applications
+
 ```nginx
 server {
     # ... existing configuration ...
@@ -219,22 +236,25 @@ server {
 ```
 
 ## 12. Nginx SSL Configuration
+
 ```bash
 sudo apt install -y certbot python3-certbot-nginx # Install Certbot
 sudo certbot --nginx # Generate SSL Certificate
 ```
 
 ## 13. Nginx SSL Configuration File
+
 ```bash
 sudo nano /etc/nginx/sites-available/example.com # Open Nginx SSL Configuration File
 ```
+
 ```nginx
 server {
     listen 443 ssl;
     server_name example.com www.example.com;
 
     ssl_certificate /etc/letsencrypt/live/example.com/fullchain.pem; # managed by Certbot
-    ssl_certificate_key /etc/letsencrypt/live/example.com/privkey.pem; 
+    ssl_certificate_key /etc/letsencrypt/live/example.com/privkey.pem;
 
     location / {
         proxy_pass http://localhost:3000;
@@ -248,26 +268,33 @@ server {
 ```
 
 ## 15. Nginx SSL Configuration Reload
+
 ```bash
 sudo systemctl reload nginx # Reload Nginx
 ```
 
 ## 16. Nginx SSL Renewal
+
 ```bash
 sudo certbot renew # Renew SSL Certificate
 ```
 
 ## 17. Nginx SSL Renewal Test
+
 ```bash
 sudo certbot renew --dry-run # Test SSL Certificate Renewal
 ```
 
-----------------------------------------------------
+---
+
 # Nginx Multiple APP in multiple Sub Domain
+
 ```bash
 sudo nano /etc/nginx/sites-available/[DOMAIN_NAME]
 ```
+
 Add the following configuration:
+
 ```nginx
 server {
     listen 80;
@@ -297,15 +324,21 @@ server {
     }
 }
 ```
+
 Enable the Sites
+
 ```bash
 sudo ln -s /etc/nginx/sites-available/[DOMAIN_NAME] /etc/nginx/sites-enabled/
 ```
+
 Test NGINX Config
+
 ```bash
 sudo nginx -t
 ```
+
 restart nginx server
+
 ```bash
 sudo systemctl restart nginx
 ```
